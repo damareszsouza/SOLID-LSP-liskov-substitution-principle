@@ -5,6 +5,8 @@ Liskov Substitution Principle (LSP)
 O Princípio de Substituição de Liskov diz que objetos podem ser substituídos por seus subtipos sem que isso afete a execução correta do programa.
 
 Exemplo
+
+
 class EmailTemplate
   attr_reader :recipient
 
@@ -47,6 +49,9 @@ class InviteEmail < EmailTemplate
     raise NotImplementedError
   end
 end
+
+
+
 Nesse exemplo, EmailTemplate é a classe base, indicando que cada classe que herdá-la deve implementar o método body. A classe WelcomeEmail faz a implementação desse método, enquanto InviteEmail implementa body e sobrescreve signature.
 
 Agora, supondo que uma classe receba um objeto de uma das classes de Email (EmailTemplate, WelcomeEmail, InviteEmail) e faça chamadas dos três métodos: headers, body e signature. Qualquer subclasse de EmailTemplate deveria ser utilizada sem afetar o funcionamento correto da aplicação. Porém, não é o caso de InviteEmail, uma vez que ele lança uma exceção NotImplementedError e o body retorna um hash.
